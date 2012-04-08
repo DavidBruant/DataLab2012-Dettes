@@ -277,9 +277,11 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
                   );
                   
             var infoCommune = document.createElement('div');
+            $(infoCommune).addClass('info-commune');
             bulleContents[commune] = infoCommune;
             
             // bonhommes
+            var bonhommesContainer = document.createElement('div');
             var bonhommes = document.createElement('div');
             $(bonhommes).addClass('bonhommes');
             for(var i=1 ; i<=10 ; i++){
@@ -288,11 +290,11 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
                 bonhommes.appendChild(b);
             }
             
-            infoCommune.appendChild(bonhommes);
+            $(bonhommesContainer).append(bonhommes)
 
             // commune
             var c = document.createElement('div');
-            $(c).addClass('commune').text(commune).appendTo(infoCommune);
+            $(c).addClass('commune').text(commune)
             
 
             
@@ -325,7 +327,13 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
                 "Etiquette politique du maire"
             );
             
-            $(infoCommune).append(endettementGlobal).append(endettementParHabitant).append(habitants).append(maire);
+            $(infoCommune)
+            .append(c)
+            .append(bonhommesContainer)
+            .append(endettementGlobal)
+            .append(endettementParHabitant)
+            .append(habitants)
+            .append(maire);
 
         }
     });

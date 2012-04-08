@@ -93,47 +93,74 @@ header{
         overflow-y:scroll;
     }
     
-    #info .commune{
-        position: absolute;
-        right: 0;
-        top: 0;
-        background-color: white;
-        background-color: rgba(255, 255, 255, 0.5);
-        
-        padding: 0.2em;
-        font-weight: bold;
-        font-size: 1.3em;
-        
-    }
+        .info-commune{
+        }
+    
+            .info-commune > *{
+            }
+            
+                .info-commune > * > *{
+                    /*border: 1px solid black;*/
+                }
+    
+            .commune{
+                display: block;
+                /*position: absolute;*/
+                right: 0;
+                top: 0;
+                background-color: white;
+                background-color: rgba(255, 255, 255, 0.5);
+                
+                padding: 0.2em;
+                font-weight: bold;
+                font-size: 1.3em;
+                
+            }
     
     
-    .infoPiece{
+            .infoPiece{
+                display: table-row;
+            }
+            
+                .infoPiece > *{
+                    display: table-cell;
+                    vertical-align: middle;
+                }
+            
+                .infoPiece .desc{
+                    text-transform: uppercase;
+                    color: #555;
+                    font-size: 0.65em;
+                }
+            
+                .infoPiece .value{
+                    font-weight: bold;
+                    font-size: 1.2em;
+                }
+            
+            
+            .bonhommes{
+                display: table-row;
+            }
+                .bonhommes > *{
+                    display: table-cell;
+                }
+        
+        
+ol.interview{
+    display: table;
+    border-collapse: collapse;
+}
+
+    ol.interview > li{
         display: table-row;
     }
-    
-        .infoPiece > *{
+
+        ol.interview > li > *{
             display: table-cell;
             vertical-align: middle;
+            /*border: 1px solid black;*/
         }
-    
-        .infoPiece .desc{
-            text-transform: uppercase;
-            color: #555;
-            font-size: 0.65em;
-        }
-    
-        .infoPiece .value{
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-    
-    
-    .bonhommes{
-        display: table-row;
-    }
-        .bonhommes > *{
-            display: table-cell;
-        }
-    
-    
-    
+
+
+
