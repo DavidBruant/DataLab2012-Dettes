@@ -7,6 +7,10 @@
     padding: 0;
 }
 
+ul, ol{
+    list-style:none;
+}
+
 body{
     background-image: url('./Images/Background.png');
     background-position: center top;
@@ -156,9 +160,37 @@ header{
             }
         
         
+#plus-loin{
+    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    margin-top: 1em;
+    padding: 0.7em;
+}
+
+    #plus-loin .section{
+        margin-top: 2em;
+    }
+
+        #plus-loin .section li{
+            text-indent: 1.3em;
+            margin: 0.5em 0;
+        }
+    
+            .question{
+                text-indent: 1.3em;
+                font-weight: bold;
+                display:block;
+                padding: 0.2em 0;
+            }
+    
+.hgroup > *{
+    padding: 0.2em;
+}
+        
 ol.interview{
     display: table;
     border-collapse: collapse;
+    clear: both;
 }
 
     ol.interview > li{
