@@ -268,7 +268,6 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
                   .attr({fill:'purple', "stroke-width": 0, opacity: 0.5})
                   .hover(function hoverin(){
                         textElements[commune].show();
-                        //$('#json').text(JSON.stringify(bulleData[commune], null, '  '));
                         $('#info').empty().append(bulleContents[commune]);
                         
                    },function hoverout(){
@@ -294,21 +293,30 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
 
             // commune
             var c = document.createElement('div');
-            $(c).addClass('commune').text(commune)
+            $(c).addClass('commune').text(commune);
             
 
+            // réponses communes
+            var response = document.createElement('div');
+            
+            var title = document.createElement('h1');
+            $(title).text("Principaux investissements financés par des emprunts en 2010");
+            
+            var responseText = $("#reponses-communes ."+commune.replace(' ', '_')).text();
+            
+            $(response).append(title).append(responseText);
             
 
             // infos
             var endettementGlobal = createInfoPiece(
                 './Images/Picto/Coins.png', 
-                bulleData[commune]['Endettement global en 2010'] + '€', 
+                bulleData[commune]['Endettement global en 2010'] + ' €', 
                 "Endettement global au 31/12/2010"
             );
             
             var endettementParHabitant = createInfoPiece(
                 './Images/Picto/Dette.png', 
-                bulleData[commune]['Endettement par habitant en 2010'] + '€', 
+                bulleData[commune]['Endettement par habitant en 2010'] + ' €', 
                 "Endettement par habitant au 31/12/2010"
             );
 
@@ -327,13 +335,17 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
                 "Etiquette politique du maire"
             );
             
+            
+            
+            
             $(infoCommune)
-            .append(c)
-            .append(bonhommesContainer)
-            .append(endettementGlobal)
-            .append(endettementParHabitant)
-            .append(habitants)
-            .append(maire);
+                .append(c)
+                .append(bonhommesContainer)
+                .append(endettementGlobal)
+                .append(endettementParHabitant)
+                .append(habitants)
+                .append(maire)
+                .append(response);
 
         }
     });
