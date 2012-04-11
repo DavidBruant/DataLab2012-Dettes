@@ -296,17 +296,6 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
             $(c).addClass('commune').text(commune);
             
 
-            // réponses communes
-            var response = document.createElement('div');
-            
-            var title = document.createElement('h1');
-            $(title).text("Principaux investissements financés par des emprunts en 2010");
-            
-            var responseText = $("#reponses-communes ."+commune.replace(' ', '_')).text();
-            
-            $(response).append(title).append(responseText);
-            
-
             // infos
             var endettementGlobal = createInfoPiece(
                 './Images/Picto/Coins.png', 
@@ -335,8 +324,25 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
                 "Etiquette politique du maire"
             );
             
+            // Graphes
+            var graph = document.createElement('img');
+            graph.src = './Images/Graphes/'+commune+'.jpg';
             
+
+            // réponses communes
+            var response = document.createElement('div');
             
+            var responseText = $("#reponses-communes ."+commune.replace(' ', '_')).text().trim();
+            
+            if(responseText !== ''){
+                var title = document.createElement('h1');
+                $(title).text("Principaux investissements financés par des emprunts en 2010");
+                
+                var p = document.createElement('p');
+                $(p).text(responseText);
+                
+                $(response).append(title).append(p);
+            }
             
             $(infoCommune)
                 .append(c)
@@ -345,6 +351,7 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
                 .append(endettementParHabitant)
                 .append(habitants)
                 .append(maire)
+                .append(graph)
                 .append(response);
 
         }

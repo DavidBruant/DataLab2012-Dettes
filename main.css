@@ -106,9 +106,9 @@ header{
                 padding: 0 0.4em;
             }
             
-                .info-commune > * > *{
-                    /*border: 1px solid black;*/
-                }
+            .info-commune > img {
+                margin: 0 5%;
+            }
     
             .commune{
                 display: block;
@@ -155,8 +155,16 @@ header{
                 }
                 
             h1{
-                font-size: 1.3em;
-                
+                font-size: 1.3em; 
+            }
+            
+            h1, p{
+                padding: 0.4em;
+            }
+            
+            p{
+                text-indent: 1em;
+                line-height: 1.2em;
             }
         
         
