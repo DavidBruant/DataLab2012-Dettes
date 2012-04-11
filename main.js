@@ -16,7 +16,10 @@
 
 })();
 
-
+var TEXT_STYLE = {
+    "font-size": 15,
+    "font-weight": 'bold'
+};
 var mapSVGP = $.get('./Images/MAP/map.svg');
 
 var pathPerCommuneDefer = new $.Deferred();
@@ -83,7 +86,7 @@ $(function(){
                     // so that text is on top
                     setTimeout(function(){
                         canvas.text(coords.x, coords.y, text)
-                              .attr({'font-size': 13});
+                              .attr(TEXT_STYLE);
                     }, 0);
                 }
             }
@@ -227,6 +230,9 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
     
     var textElements = Object.create(null);
     var bulleContents = Object.create(null);
+    var circles = Object.create(null);
+    
+    var currentCommune;
     
     Object.keys(data).forEach(function(commune){
     
@@ -260,20 +266,41 @@ $.when(dataP, bulleDataP, pathPerCommuneP).then(function(data, bulleData, pathPe
             var coords = pathPerCommune.communeCoodinates(commune);
             setTimeout(function(){
                 textElements[commune] = canvas.text(coords.x, coords.y, commune)
-                                              .attr({'font-size': 13})
+                                              .attr(TEXT_STYLE)
                                               .hide();
             }, 0);
             
-            canvas.circle(coords.x, coords.y, Math.sqrt(dette2010/2)+5 )
-                  .attr({fill:'purple', "stroke-width": 0, opacity: 0.5})
+            var baseStyle = {fill:'purple', "stroke-width": 0, "stroke": '#0071BC', opacity: 0.5, cursor: 'pointer'};
+            
+            circles[commune] = canvas.circle(coords.x, coords.y, Math.sqrt(dette2010/2)+5 )
+                  .attr(baseStyle)
                   .hover(function hoverin(){
-                        textElements[commune].show();
+                        this.attr({ "stroke-width": 4 });
                         $('#info').empty().append(bulleContents[commune]);
-                        
                    },function hoverout(){
-                        textElements[commune].hide();
+                        if(currentCommune !== commune)
+                            this.attr(baseStyle);
+                    
+                        $('#info').empty().append(bulleContents[currentCommune]);
                    }
-                  );
+                  )
+                  .click(function(){
+                        if(currentCommune !== commune){
+                            // hide current
+                            if(currentCommune){
+                                circles[currentCommune].attr(baseStyle);
+                                textElements[currentCommune].hide();
+                            }
+                            
+                            currentCommune = commune;
+                            
+                            // show new
+                            this.toFront();
+                            textElements[commune].show().toFront();
+                            this.attr({"opacity": 1, "stroke-width": 4 });
+                            $('#info').empty().append(bulleContents[commune]);
+                        }
+                  });
                   
             var infoCommune = document.createElement('div');
             $(infoCommune).addClass('info-commune');

@@ -22,7 +22,8 @@ body{
 
 header{
     background-image: url('./Images/Bandeau.png');
-    background-position: 0% -60px;
+    background-position: center -60px;
+    background-repeat: no-repeat;
     
     width: 100%;
     height: 350px;
@@ -176,7 +177,7 @@ header{
 }
 
     #plus-loin .section{
-        margin-top: 2em;
+        margin-bottom: 2em;
     }
 
         #plus-loin .section li{
